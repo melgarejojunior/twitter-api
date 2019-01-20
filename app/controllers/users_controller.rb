@@ -10,8 +10,9 @@ class UsersController < ApplicationController
 		name = params[:name]
 		email = params[:email]
 		password = params[:password]
+		avatar = params[:avatar]
 
-		user = User.create(name: name, email: email, password: password)
+		user = User.create(name: name, email: email, password: password, avatar: avatar)
 
 		unless user.errors.present?
 			render json: { id: user.id, name: user.name, email: user.email, token: user.token }, status: :created

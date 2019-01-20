@@ -8,9 +8,12 @@ class User < ApplicationRecord
   has_many :followings_users, through: :followings, source: :follower, class_name: "User" 
   has_many :followings_posts, ->{ distinct }, through: :followings_users, source: :posts, class_name: "Post"
 
+  mount_uploader :avatar, AvatarUploader
+
 	validates_presence_of :email, :name, :password
 	validates_uniqueness_of :email
 	validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
+
 
   def update_token
     self.generate_token

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_06_135242) do
+ActiveRecord::Schema.define(version: 2019_01_19_201435) do
 
   create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "follower_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_01_06_135242) do
     t.datetime "updated_at", null: false
     t.string "token"
     t.string "password"
+    t.string "avatar"
   end
 
   add_foreign_key "posts", "users"
