@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 		user = User.create(name: name, email: email, password: password, avatar: avatar)
 
 		unless user.errors.present?
-			render json: { id: user.id, name: user.name, email: user.email, token: user.token }, status: :created
+			respond_with user, location: "", serializer:CompleteUserSerializer, status: :created
 		else
 			render json: { errors: user.errors.full_messages.join(", ") }, status: :unprocessable_entity
 		end
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 		if user.present? and user.password == password
 			user.update_token
 			user.save
-			render json: { id: user.id, name: user.name, email: user.email, token: user.token }, status: :ok
+			respond_with user, location: "", serializer:CompleteUserSerializer, status: :ok
 		else
 			render json: { errors: "Email or Password invalid" }, status: :unprocessable_entity
 		end
